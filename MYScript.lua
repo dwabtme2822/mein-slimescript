@@ -20,17 +20,17 @@ frame.BorderColor3 = Color3.fromRGB(255, 255, 255)
 frame.Parent = screenGui
 
 local title = Instance.new("TextLabel")
-title.Text = "Mein Skript"
+title.Text = "Mein Menü"
 title.Size = UDim2.new(1, 0, 0, 30)
 title.BackgroundTransparency = 1
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
 title.Font = Enum.Font.GothamBold
 title.Parent = frame
 
--- Auto Collect Toggle
-local autoCollect = false
+-- Auto Farm Toggle
+local autoFarm = false
 local button = Instance.new("TextButton")
-button.Text = "Auto Collect: AUS"
+button.Text = "Auto Farm: AUS"
 button.Size = UDim2.new(1, 0, 0, 30)
 button.Position = UDim2.new(0, 0, 0, 40)
 button.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
@@ -38,15 +38,15 @@ button.TextColor3 = Color3.fromRGB(255, 255, 255)
 button.Parent = frame
 
 button.MouseButton1Click:Connect(function()
-    autoCollect = not autoCollect
-    button.Text = "Auto Collect: " .. (autoCollect and "AN" or "AUS")
+    autoFarm = not autoFarm
+    button.Text = "Auto Farm: " .. (autoFarm and "AN" or "AUS")
 end)
 
 -- Hauptloop
 while true do
-    if autoCollect then
+    if autoFarm then
         pcall(function()
-            game:GetService("ReplicatedStorage").RemoteEvents.CollectLoot:FireServer()
+            game:GetService("ReplicatedStorage").RemoteEvents.FarmMobs:FireServer()
         end)
     end
     wait(0.5)
